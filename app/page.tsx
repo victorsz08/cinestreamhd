@@ -1,95 +1,90 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useEffect, useState } from "react";
+import { IoSearchSharp } from "react-icons/io5";
+import { IMovie, ISerieTv } from "./types";
+import style from "./home.module.css";
+import ListCard from "./components/ListCards";
+import api from "./services/api";
+import CardMovie from "./components/CardMovie";
+import CardSerieTv from "./components/CardSerieTv";
+import CardMovieSearch from "./components/CardMovieSearch";
+
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [serie, setSerie] = useState<ISerieTv[]>([]);
+  const [movieSearch, setMovieSearch] = useState<IMovie[]>([]);
+
+  useEffect(() => {
+    api.get("movie/popular")
+      .then(res => {
+        setMovies(res.data.results)
+      }).catch(err => {
+        console.log(err?.response?.data)
+      })
+
+    api.get("tv/popular")
+      .then(res => {
+        setSerie(res?.data.results)
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err?.response?.data)
+      })
+  },[])
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>){
+    e.preventDefault();
+
+    api.get(`search/movie?query=${search}`)
+      .then(res => {
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err?.response.data)
+      })
+  }
+
+  useEffect(() => {
+    api.get(`search/movie?query=${search}`)
+      .then(res => {
+        setMovieSearch(res?.data.results)
+      }).catch(err => {
+        console.log(err?.response.data)
+      })
+  }, [search])
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <section className={style.home}>
+      <div className={style.search}>
+        <div className={style.title}>
+          <h1>Cine</h1>
+          <h1>Stream</h1>
         </div>
+        <h1>Bem-Vindos ao CineStrem, Milhões de Filmes e Series de TV. Explore!</h1>
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={search} onChange={e => setSearch(e.target.value)}/>
+          <button><IoSearchSharp/></button>
+        </form>
+        {movieSearch &&
+        <div className={style.toggle}>
+          {movieSearch.map(movie => (
+            <CardMovieSearch data={movie} key={movie.id}/>
+          ))}
+        </div>}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {movieSearch && <>
+        <ListCard title="Filmes Mais Populares">
+          {movies.map(movie => (
+            <CardMovie key={movie.id} movie={movie}/>
+          ))}
+      </ListCard>
+      <ListCard title="Series de TV mais Populares">
+        {serie.map(serie => (
+          <CardSerieTv serie={serie} key={serie.id}/>
+        ))}
+      </ListCard>
+      </>}
+    </section>
   );
 }
