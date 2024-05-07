@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import styled from "styled-components";
 
 const ListStyled = styled.main`

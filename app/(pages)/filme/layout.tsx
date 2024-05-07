@@ -3,15 +3,15 @@ import { Metadata } from "next";
 
 
 
-const metadata: Metadata = {
-    title: "CineStrean: Filmes",
+export const metadata: Metadata = {
+    title: "CineStrean: Buscar Filmes",
     description: "Buscar Filmes Online"
 }
 
-export default function LayoutMovie({children} : { children: React.ReactNode}) {
+export default function LayoutMovie({ children }: { children: React.ReactNode }) {
     return (
-        <html>
+        <>
             {children}
-        </html>
-    )
+        </>
+    );
 }

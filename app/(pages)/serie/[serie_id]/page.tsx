@@ -6,7 +6,6 @@ import CardSeason from "@/app/components/CardSeason";
 import { optionsApi } from "@/app/services/optionsApi";
 import { ISerieTv } from "@/app/types";
 import { Metadata } from "next";
-import { Suspense } from "react";
 
 
 type Props = {
@@ -16,7 +15,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [,id] = params.serie_id.split("-")
  
-  const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?language=pt-BR`, optionsApi).then(response => response.json());
+  const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?language=pt-BR`, optionsApi)
+  .then(response => response.json());
 
   return {
     title: "CineStream: "+ response.name
@@ -63,13 +63,13 @@ export default async function Serie({ params }: { params: { serie_id: string } }
       <ListCard title="Temporadas">
         {response?.seasons?.map(season => (
           <CardSeason 
-          air_date={season.air_date}
-          episode_count={season.episode_count}
-          name={season.name}
-          poster_path={season.poster_path}
-          season_number={season.season_number}
-          serie_id={response.id}
-          key={response.id}
+            air_date={season.air_date}
+            episode_count={season.episode_count}
+            name={season.name}
+            poster_path={season.poster_path}
+            season_number={season.season_number}
+            serie_id={response.id}
+            key={response.id}
           />
         ))}
       </ListCard>

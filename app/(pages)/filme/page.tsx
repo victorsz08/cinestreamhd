@@ -2,9 +2,9 @@
 
 import CardMovie from "@/app/components/CardMovie";
 import { IMovie } from "@/app/types";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import style from "./movie.module.css";
-import api from "@/app/services/api";
+import { optionsApi } from "@/app/services/optionsApi";
 
 
 
@@ -16,7 +16,7 @@ export default function Movies() {
     const [visiblePages, setVisiblePages] = useState<number[]>([]);
     
     useEffect(() => {
-        fetchMovies();
+        fetchMovie();
     }, [page]);
 
     useEffect(() => {
@@ -24,23 +24,20 @@ export default function Movies() {
     }, [value]);
 
     useEffect(() => {
-        api.get("movie/popular")
-            .then(res => {
-                setMovies(res.data.results)
-            }).catch(err => {
-                console.log(err?.response?.data)
-            })
-    },[])
+        fetchMoviesPopular();
+    },[page])
 
-    const fetchMovies = () => {
-        api.get(`search/movie?query=${value}&page=${page}`)
-            .then(res => {
-                setMovies(res.data.results);
-                setTotalPages(res.data.total_pages);
-            }).catch(err => {
-                console.log(err.response.data);
-            });
-    };
+    const fetchMoviesPopular = async () => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${page}`, optionsApi);
+            const data = await response.json();
+            
+            setMovies(data.results);
+            setTotalPages(data.total_pages);
+        } catch (error) {
+            console.error("Error fetching popular movies:", error);
+        }
+    }
 
     const goToPreviousPage = () => {
         if (page > 1) {
@@ -82,10 +79,26 @@ export default function Movies() {
         setVisiblePages(pages);
     };
 
+    const fetchMovie = async () => {
+        if(!value) {
+            return
+        }
+        const series = await fetch(`https://api.themoviedb.org/3/search/movie?query=${value}&page=${page}`, optionsApi)
+                             .then(response => response.json()).catch(err => console.log(err))
+
+        setMovies(series.results);
+        setTotalPages(series.total_pages);
+    }
+
+    const handleSearch = (e: FormEvent) => {
+        e.preventDefault();
+        fetchMovie();
+    }
+
     return (
         <section className={style.movie_page_container}>
             <main>
-                <form onSubmit={(e) => { e.preventDefault(); fetchMovies(); }} className={style.form_container}>
+                <form onSubmit={handleSearch} className={style.form_container}>
                     <h1>Buscar filmes</h1>
                     <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Buscar filmes..." />
                     <button type="submit">pesquisar</button>

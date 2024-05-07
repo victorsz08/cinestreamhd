@@ -21,6 +21,10 @@ export default function Serie(){
         setPage(1);
     }, [serie]);
 
+    useEffect(() => {
+        fetchSeriesPopular()
+    },[page])
+
 
     const goToPreviousPage = () => {
         if (page > 1) {
@@ -62,7 +66,23 @@ export default function Serie(){
         setVisiblePages(pages);
     };
 
+
+    const fetchSeriesPopular = async () => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/tv/popular?page=${page}`, optionsApi);
+            const data = await response.json();
+            
+            setResponse(data.results);
+            setTotalPages(data.total_pages);
+        } catch (error) {
+            console.error("Error fetching popular movies:", error);
+        }
+    }
+
     const fetchSerie = async () => {
+        if(!serie) {
+            return
+        }
         const series = await fetch(`https://api.themoviedb.org/3/search/tv?query=${serie}&page=${page}`, optionsApi)
                              .then(response => response.json());
 

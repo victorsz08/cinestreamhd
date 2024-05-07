@@ -1,76 +1,34 @@
-"use client";
 
 import ListCard from "@/app/components/ListCards";
 import style from "./movie.module.css";
-import api from "@/app/services/api";
 import { formatDate } from "@/app/services/utils";
-import { IMovie, IPeople, ITrailer } from "@/app/types";
-import { useEffect, useState } from "react";
 import CardPeople from "@/app/components/CardPeople";
-import CardMovie from "@/app/components/CardMovie";
 import GraphicCircle from "@/app/components/Graphic";
+import { optionsApi } from "@/app/services/optionsApi";
+import { IMovie, IPeople } from "@/app/types";
+import { Metadata } from "next";
 
-export default function Filme({ params }: { params: { movie_id: string } }) {
-  const [movie, setMovie] = useState<IMovie>();
-  const [trailer, setTrailer] = useState<ITrailer>();
-  const [peoples, setPeoples] = useState<IPeople[]>([]);
-  const [recommendations, setRecommendations] = useState<IMovie[]>([]);
+type Props = {
+  params: { movie_id: string }
+}
+ 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const [,id] = params.movie_id.split("-")
+ 
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, optionsApi)
+  .then(response => response.json());
+
+  return {
+    title: "CineStream: "+ response.title
+  }
+}
+
+export default async function Filme({ params }: { params: { movie_id: string } }) {
   const [,id] = params.movie_id.split("-");
 
-  useEffect(() => {
-    api
-      .get(`movie/${id}`)
-      .then((res) => {
-        setMovie(res?.data);
-        console.log(res?.data);
-      })
-      .catch((err) => {
-        console.log(err?.response?.data);
-      });
-
-    api
-      .get(`movie/${params.movie_id}/videos`)
-      .then((res) => {
-        setTrailer(res?.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err?.response?.data);
-      });
-
-    api
-      .get(`movie/${id}/credits`)
-      .then((res) => {
-        const renderCasts = [];
-
-        if (res.data.cast <= 3) {
-          for (let i = 0; i === undefined; i++) {
-            renderCasts.push(res?.data.cast[i]);
-          }
-        } else if (res.data.cast.length <= 8) {
-          for (let i = 0; i <= 8; i++) {
-            renderCasts.push(res?.data.cast[i]);
-          }
-        } else {
-          for (let i = 0; i <= 10; i++) {
-            renderCasts.push(res?.data.cast[i]);
-          }
-        }
-
-        setPeoples(renderCasts);
-      })
-      .catch((err) => {
-        console.log(err?.response?.data);
-      });
-
-    api
-      .get(`/movie/${id}/recommendations`)
-      .then((res) => {
-        setRecommendations(res?.data.results);
-      })
-      .catch((err) => {
-        console.log(err?.response?.data);
-      });
-  }, [params]);
+  const movie: IMovie = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, optionsApi).then(response => response.json());
+  const response = await fetch(` https://api.themoviedb.org/3/movie/${id}/credits`, optionsApi).then(response => response.json());
+  const peoples: IPeople[] = await response.cast;
 
   return (
     <section className={style.movie}>
@@ -126,8 +84,7 @@ export default function Filme({ params }: { params: { movie_id: string } }) {
         </div>
       <div className={style.casts}>
         <ListCard title="Elenco">
-          {peoples &&
-            peoples.map((people, index) => (
+          {peoples.map((people, index) => (
               <CardPeople
                 key={people?.id || index}
                 name={people?.name}
@@ -136,16 +93,6 @@ export default function Filme({ params }: { params: { movie_id: string } }) {
               />
             ))}
         </ListCard>
-      </div>
-      <div className={style.recommendatios}>
-        {recommendations && (
-          <ListCard title="Recomendações">
-            {recommendations &&
-              recommendations.map((movie) => (
-                <CardMovie key={movie.id} movie={movie} />
-              ))}
-          </ListCard>
-        )}
       </div>
     </section>
   );

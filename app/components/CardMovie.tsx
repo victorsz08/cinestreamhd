@@ -3,6 +3,7 @@ import { IMovie } from "../types";
 import { formatDate } from "../services/utils";
 import GraphicCard from "./GraphicCard";
 import Link from "next/link";
+import { Suspense } from "react";
 
 
 

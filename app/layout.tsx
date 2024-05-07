@@ -15,9 +15,6 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 
   return (
     <html lang="pt-br">
-        <head>
-        <link rel="icon" href="/favicon.ico"  sizes="any" />
-        </head>
       <body className={inter.className}>
         <header className="header">
             <Link href={"/"} className="title-container">
