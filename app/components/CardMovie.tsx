@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IMovie } from "../types";
-import { formatDate } from "../services/utils";
+import { formatDate } from "../services/utils.ts";
 import GraphicCard from "./GraphicCard";
 import Link from "next/link";
 import { Suspense } from "react";

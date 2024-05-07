@@ -1,11 +1,12 @@
 import style from "./serie.module.css";
 import GraphicCircle from "@/app/components/Graphic";
-import { formatDate } from "@/app/services/utils";
+
 import ListCard from "@/app/components/ListCards";
 import CardSeason from "@/app/components/CardSeason";
 import { optionsApi } from "@/app/services/optionsApi";
 import { ISerieTv } from "@/app/types";
 import { Metadata } from "next";
+import { formatDate } from "@/app/services/utils";
 
 
 type Props = {

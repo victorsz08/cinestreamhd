@@ -1,5 +1,3 @@
-
-
 export function formatDate(date?: string) {
     const months = [
       "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",

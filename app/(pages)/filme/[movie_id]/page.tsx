@@ -1,12 +1,12 @@
 
 import ListCard from "@/app/components/ListCards";
 import style from "./movie.module.css";
-import { formatDate } from "@/app/services/utils";
 import CardPeople from "@/app/components/CardPeople";
 import GraphicCircle from "@/app/components/Graphic";
 import { optionsApi } from "@/app/services/optionsApi";
 import { IMovie, IPeople } from "@/app/types";
 import { Metadata } from "next";
+import { formatDate } from "@/app/services/utils";
 
 type Props = {
   params: { movie_id: string }

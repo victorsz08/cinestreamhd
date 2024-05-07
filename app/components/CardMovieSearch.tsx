@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IMovie, ISerieTv } from "../types";
-import { formatDate } from "../services/utils";
+import { formatDate } from "../services/utils.ts";
 import Link from "next/link";
 
 
