@@ -1,8 +1,4 @@
 import axios from "axios";
-import "dotenv/config";
-
-
-const token = process.env.TOKEN || "";
 
 
 const api = axios.create({
@@ -13,14 +9,14 @@ const api = axios.create({
     },
     headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${process.env.tokenBearer}`
     }
 });
 
 
 api.interceptors.request.use(function (config) {
-    if (token && config.headers) {
-        config.headers.Authorization = `Bearer ${token}`
+    if (process.env.tokenBearer && config.headers) {
+        config.headers.Authorization = `Bearer ${process.env.tokenBearer}`
     }
     return config;
   }, function (error) {

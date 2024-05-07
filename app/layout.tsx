@@ -28,8 +28,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
               <Link href="/">SOBRE</Link>
             </nav>
         </header>
-        {children}
-        
+           {children}
         </body>
     </html>
   );
