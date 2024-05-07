@@ -59,9 +59,11 @@ img:hover {
 
 
 export default function CardSerieTv({ serie } : { serie: ISerieTv } ){
+    const titleSerie = serie?.name?.split(" ").join("+");
+
     return (
         <CardStyle>
-        <Link href={`/filme/${serie.id}`}> 
+        <Link href={`/serie/${titleSerie}-${serie.id}`}> 
             <img src={`https://image.tmdb.org/t/p/original${serie.poster_path}`} alt={serie.name} />
             <div className="titles">
                 <div className="infos">

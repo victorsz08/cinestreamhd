@@ -57,9 +57,11 @@ const CardStyle = styled.div`
 `
 
 export default function CardMovie( {movie} : { movie: IMovie}){
+    const titleMovie = movie?.title?.split(" ").join("+")
+
     return (
         <CardStyle>
-            <Link href={`/filme/${movie.id}`}> 
+            <Link href={`/filme/${titleMovie}-${movie.id}`}> 
                 <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
                 <div className="titles">
                     <div className="infos">

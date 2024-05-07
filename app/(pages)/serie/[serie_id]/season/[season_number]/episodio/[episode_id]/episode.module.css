@@ -1,0 +1,75 @@
+.episode_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vh;
+    flex-direction: column;
+    gap: 1.3rem;
+    padding: 3rem 0;
+}
+
+.episode_container h1 {
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.episode_container h1 strong {
+    font-weight: 700;
+}
+
+.episode_container h1 strong + strong {
+    color: #4c00ff;
+}
+
+.episode_container h2 {
+    color: #f6ff00;
+    font-size: .9rem;
+}
+
+.episode_container iframe {
+    border-radius: 1.2rem;
+    border: none;
+    width: 800px;
+    height: 500px;
+}
+
+.episode_container .actions_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+    gap: 10px;
+}
+
+.episode_container .actions_container button {
+    background-color: #343434;
+    color: #fff;
+    font-weight: 700;
+    font-size: .8rem;
+    padding: .6rem 1rem;
+    border: none;
+    border-radius: .6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.episode_container  a {
+    background-color: #343434;
+    color: #fff;
+    font-weight: 500;
+    font-size: .7rem;
+    padding: .6rem 1rem;
+    border: none;
+    border-radius: .6rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.episode_container .actions_container button:disabled {
+    background-color: #0c0c0c;
+    color: #666666;
+}

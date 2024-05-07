@@ -8,6 +8,7 @@ export type IMovie =  {
     vote_count?: string;
     release_date?: string;
     backdrop_path?: string;
+    media_type?: string;
     poster_path?: string;
     overview?: string;
     production_companies?: IProductionCompanies[];
@@ -15,7 +16,20 @@ export type IMovie =  {
     status?: boolean;
     genres?: IGenres[]
     tagline?: string;
+    imdb_id?: string;
 }  
+
+export type ITrailer = {
+    id?: string;
+    key?: string;
+}
+
+export type IPeople = {
+    id?: string;
+    name?: string;
+    profile_path?: string;
+    character?: string;
+}
 
 export type IProductionCompanies = {
     id?: string;
@@ -41,10 +55,12 @@ export type ISerieTv = {
     overview?: string;
     popularity?: string;
     poster_path?: string;
+    media_type?: string;
     vote_average?: string;
     vote_count?: string;
     production_companies?: IProductionCompanies[];
     seasons?: ISeasons[];
+    imdb_id?: string
 }
 
 export type ISeasons = {
@@ -56,7 +72,9 @@ export type ISeasons = {
     poster_path?: string;
     serie_id?: string;
     season_number?: string;
+    vote_average?: string;
     episodes?: IEpisodes[];
+    imdb_id?: string
 }
 
 export type IEpisodes = {
@@ -73,6 +91,7 @@ export type IEpisodes = {
     season_number?: string;
     show_id?: string;
     still_path?: string;
+    imdb_id?: string
 }
 
 

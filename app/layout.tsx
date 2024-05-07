@@ -1,22 +1,23 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Cine Stream",
-  description: "Site Guia de Filmes e Series de TV",
-};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const metadata: Metadata = {
+  title: "CineStream"
+}
+
+
+export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
+
   return (
     <html lang="pt-br">
+        <head>
+        <link rel="icon" href="/favicon.ico"  sizes="any" />
+        </head>
       <body className={inter.className}>
         <header className="header">
             <Link href={"/"} className="title-container">
@@ -25,8 +26,8 @@ export default function RootLayout({
             </Link>
             <nav className="nav-container">
               <Link href="/">HOME</Link>
-              <Link href="/">FILMES</Link>
-              <Link href="/">SERIES/TV</Link>
+              <Link href="/filme">FILMES</Link>
+              <Link href="/serie">SERIES/TV</Link>
               <Link href="/">SOBRE</Link>
             </nav>
         </header>

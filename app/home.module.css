@@ -21,6 +21,7 @@
     z-index: -1; /* Empurra o pseudo-elemento para trás dos outros elementos */
     width: 100vw;
     height: 60vh;
+    
   }
   
 .search h1,

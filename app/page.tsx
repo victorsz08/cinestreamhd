@@ -46,8 +46,9 @@ export default function Home() {
   }
 
   useEffect(() => {
-    api.get(`search/movie?query=${search}`)
+    api.get(`search/multi?query=${search}`)
       .then(res => {
+        console.log(res.data)
         setMovieSearch(res?.data.results)
       }).catch(err => {
         console.log(err?.response.data)
@@ -61,7 +62,7 @@ export default function Home() {
           <h1>Cine</h1>
           <h1>Stream</h1>
         </div>
-        <h1>Bem-Vindos ao CineStrem, Milhões de Filmes e Series de TV. Explore!</h1>
+        <h1>Bem-Vindos ao CineStream, Milhões de Filmes e Series de TV. Explore!</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" value={search} onChange={e => setSearch(e.target.value)}/>
           <button><IoSearchSharp/></button>
