@@ -6,6 +6,8 @@ import { IGenres, ISerieTv } from "@/app/types";
 import { FormEvent, useEffect, useState } from "react";
 import { optionsApi } from "@/app/services/optionsApi";
 
+// TODAS AS DESCRIÇÕES DE FUNÇÕES ESTÃO NA PAGINA DE FILMES [FUNÇÕES SIMILARES AS ESTAS]: /APP/FILME
+
 export default function Serie(){
     const [response, setResponse] = useState<ISerieTv[]>([]);
     const [serie, setSerie] = useState('');

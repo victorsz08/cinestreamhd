@@ -1,4 +1,4 @@
-export function formatDate(date?: string) {
+export function formatDate(date?: string) { // FORMATAÇÃO DE DATA PARA MOSTRAR MÊS NO FORMATO DE NOME.
     const months = [
       "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
       "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"

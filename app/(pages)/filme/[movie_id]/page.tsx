@@ -12,7 +12,7 @@ type Props = {
   params: { movie_id: string }
 }
  
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> { // GERAR O METADATA DINAMICO PARA CADA FILME E APRESENTAR O SEU TITULO NO TITLE DO HEAD.
   const [,id] = params.movie_id.split("-")
  
   const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, optionsApi)
@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Filme({ params }: { params: { movie_id: string } }) {
-  const [,id] = params.movie_id.split("-");
+  const [,id] = params.movie_id.split("-"); // PEGAR SOMENTE O VALOR DO ID DO FILME NO PARAMS DO ENDPOINT PARA FAZER O GET NA API POR ID.
 
   const movie: IMovie = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, optionsApi).then(response => response.json());
   const response = await fetch(` https://api.themoviedb.org/3/movie/${id}/credits`, optionsApi).then(response => response.json());
-  const peoples: IPeople[] = await response.cast;
+  const peoples: IPeople[] = await response.cast; 
 
   return (
     <section className={style.movie}>

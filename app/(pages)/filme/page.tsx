@@ -17,25 +17,25 @@ export default function Movies() {
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchMovie();
+    fetchMovie(); // FAZ A BUSCA POR PAGINAÇÃO QUANDO A PAGINA MUDA.
   }, [page]);
 
   useEffect(() => {
-    setPage(1);
+    setPage(1); // SE O VALOR DE BUSCA MUDAR, FAZ UMA NOVA BUSCA E ZERA O VALOR DE PAGINAÇÃO.
   }, [value]);
 
   useEffect(() => {
-    fetchMoviesPopular();
+    fetchMoviesPopular(); // FAZ A BUSCA DE FILMES POPULARES E DOS GÊNEROS QUANDO A PAGINA É MONTADA, E SE O VALOR DA PAGINA MUDAR FAZ ESSA BUSCA COM O NOVO VALOR DE PAGINAÇÃO.
     fetchGenres();
   }, [page]);
 
   useEffect(() => {
     if(genreSearch){
-        fetchMovieByGenre(genreSearch)
+        fetchMovieByGenre(genreSearch) // VERIFICA SE O VALOR DO GÊNERO É PRESENTE PARA FAZER UM NOVA BUSCA CPOM O NOVO VALOR DA PAGINAÇÃO
     }
   },[page]);
 
-  const fetchGenres = async () => {
+  const fetchGenres = async () => { // FAZ A BUSCA DE GÊNEROS NA API.
     const response = await fetch(
       "https://api.themoviedb.org/3/genre/movie/list?language=pt-BR",
       optionsApi
@@ -45,13 +45,13 @@ export default function Movies() {
   };
 
 
-  const fetchMovieByGenre = async (genreId: string) => {
+  const fetchMovieByGenre = async (genreId: string) => { // FAZ A BUSCA DE FILMES A PARTIR DO GÊNERO.
     if(!genreId){
         return
     }
-    setValue("");
+    setValue(""); // SE EXISTIR ALGUM VALOR, ZERA PARA FAZER A BUSCA APENAS POR GENERO.
     setGenreSearch(genreId);
-    setSelectedGenre(genreId);
+    setSelectedGenre(genreId); // SELECIONA O GÊNERO PARA DESTACAR O BOTÃO SELECIONADO.
 
     if(genreSearch !== genreId){
         setPage(1);
@@ -67,7 +67,7 @@ export default function Movies() {
         setTotalPages(response.total_pages);
   }
 
-  const fetchMoviesPopular = async () => {
+  const fetchMoviesPopular = async () => { 
     if(value || genreSearch) {
         return;
     }
@@ -91,7 +91,7 @@ export default function Movies() {
       return;
     }
 
-    setGenreSearch("");
+    setGenreSearch(""); // SE UMA NOVA BUSCA FOR FEITA, ZERA O VALOR DOS GÊNEROS PARA BUSCAR APENAS POR NOME DO FILME.
 
     const movies = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${value}&page=${page}`,
@@ -104,12 +104,12 @@ export default function Movies() {
     setTotalPages(movies.total_pages);
   };
 
-  const handleSearch = (e: FormEvent) => {
+  const handleSearch = (e: FormEvent) => { // FUNÇÃO QUE CHAMA A FUNÇÃO DE BUSCA POR NOME NO EVENTO DE SUBMIT.
     e.preventDefault();
     fetchMovie();
   };
 
-  const goToPreviousPage = () => {
+  const goToPreviousPage = () => { 
     if (page > 1) {
       setPage(page - 1);
     }
@@ -123,9 +123,9 @@ export default function Movies() {
 
   useEffect(() => {
     updateVisiblePages();
-  }, [page, totalPages]);
+  }, [page, totalPages]); // ATUALIZAR AS PAGINAS DISPONIVEIS NA TELA A CADA MUDANÇA DE PAGINA E TOTAL DE PAGINAS.
 
-  const updateVisiblePages = () => {
+  const updateVisiblePages = () => { // FUNÇÃO PARA QUANDO O USUÁRIO PASSAR PARA PRÓXIMA PAGINA MOSTRAR MAIS UM PAGINA DISPONIVEL NA FRENTE E OCULTAR A PRIMEIRA PAGINA DA LISTA.
     const totalPagesToShow = 7;
     const halfTotalPagesToShow = Math.floor(totalPagesToShow / 2);
     let startPage = page - halfTotalPagesToShow;

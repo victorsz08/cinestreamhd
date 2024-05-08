@@ -1,11 +1,11 @@
 import style from "./season.module.css";
 import { ISeasons, ISerieTv } from "@/app/types";
-import { formatDate } from "@/app/services/utils";
 import GraphicCircle from "@/app/components/Graphic";
 import Link from "next/link";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { optionsApi } from "@/app/services/optionsApi";
 import { Metadata } from "next";
+import { formatDate } from "@/app/services/utils";
 
 
 type Props = {
