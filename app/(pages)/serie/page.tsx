@@ -2,7 +2,7 @@
 
 import CardSerieTv from "@/app/components/CardSerieTv";
 import style from "./serie.module.css";
-import { ISerieTv } from "@/app/types";
+import { IGenres, ISerieTv } from "@/app/types";
 import { FormEvent, useEffect, useState } from "react";
 import { optionsApi } from "@/app/services/optionsApi";
 
@@ -12,6 +12,9 @@ export default function Serie(){
     const [page, setPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const [visiblePages, setVisiblePages] = useState<number[]>([]);
+    const [genres, setGenres] = useState<IGenres[]>([]);
+    const [genreSearch, setGenreSearch] = useState<string>("");
+    const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
 
     useEffect(() => {
         fetchSerie();
@@ -22,8 +25,15 @@ export default function Serie(){
     }, [serie]);
 
     useEffect(() => {
-        fetchSeriesPopular()
-    },[page])
+        fetchSeriesPopular();
+        fetchGenres()
+    },[page]);
+
+    useEffect(() => {
+        if(genreSearch){
+            fetchSerieByGenre(genreSearch)
+        }
+      },[page]);
 
 
     const goToPreviousPage = () => {
@@ -66,8 +76,43 @@ export default function Serie(){
         setVisiblePages(pages);
     };
 
+    const fetchGenres = async () => {
+        const response = await fetch(
+          "https://api.themoviedb.org/3/genre/tv/list?language=pt-BR",
+          optionsApi
+        ).then((response) => response.json());
+    
+        setGenres(response.genres);
+    };
+
+    const fetchSerieByGenre = async (genreId: string) => {
+        if(!genreId){
+            return
+        }
+        setSerie("");
+        setGenreSearch(genreId);
+        setSelectedGenre(genreId);
+    
+        if(genreSearch !== genreId){
+            setPage(1);
+        };
+    
+    
+        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?with_genres=${genreId}&page=${page}&language=pt-BR`, optionsApi)
+            .then(response => response.json()).catch(err => console.log(err));
+            
+            console.log(response);
+    
+            setResponse(response.results);
+            setTotalPages(response.total_pages);
+      }
+
 
     const fetchSeriesPopular = async () => {
+        if(serie || genreSearch) {
+            return;
+        }
+
         try {
             const response = await fetch(`https://api.themoviedb.org/3/tv/popular?page=${page}`, optionsApi);
             const data = await response.json();
@@ -80,9 +125,12 @@ export default function Serie(){
     }
 
     const fetchSerie = async () => {
-        if(!serie) {
-            return
-        }
+        if (!serie) {
+            return;
+          }
+      
+        setGenreSearch("");
+        setSelectedGenre(null)
         const series = await fetch(`https://api.themoviedb.org/3/search/tv?query=${serie}&page=${page}`, optionsApi)
                              .then(response => response.json());
 
@@ -102,6 +150,14 @@ export default function Serie(){
                     <h1>Buscar series</h1>
                     <input name="series" type="text" placeholder="Buscar series..." value={serie} onChange={(e) => setSerie(e.target.value)}/>
                     <button type="submit">pesquisar</button>
+                    <div className={style.genre_list}>
+                        {genres.map((genre) => (
+                        <button onClick={() => fetchSerieByGenre(genre.id.toString())} 
+                        key={genre.id}
+                        className={selectedGenre === genre.id.toString() ? style.selected_genre : ""}
+                        >{genre.name}</button>
+                        ))}
+          </div>
                 </form>
             </main>
             <img id={style.banner} src="https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
