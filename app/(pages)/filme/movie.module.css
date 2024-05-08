@@ -6,7 +6,7 @@
     position: relative;
     filter: brightness(30%);
     z-index: 1;
-    height: 50vh;
+    height: 70vh;
     width: 100%;
     object-fit: cover;
 }
@@ -14,13 +14,38 @@
 .movie_page_container .form_container {
     position: absolute;
     z-index: 1000;
-    height: 40vh;
+    height: 60vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.movie_page_container .form_container .genre_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 5rem;
+    gap: 20px;
+}
+
+.movie_page_container .form_container .genre_list button {
+    cursor: pointer;
+    padding: .6rem 1rem;
+    font-weight: 600;
+    color: #5C0099;
+    background-color: #fff;
+    border: 3px solid #5C0099;
+    border-radius: 1.2rem;
+}
+
+.movie_page_container .form_container .genre_list button.selected_genre {
+    color: #fff;
+    background-color: #5C0099;
+    border-color: #5C0099;
 }
 
 .movie_page_container .form_container input {

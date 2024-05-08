@@ -38,7 +38,7 @@ export type IProductionCompanies = {
     origin_country?: string;
 }
 export type IGenres = {
-    id: string | number;
+    id: string;
     name?: string;
 }
 
