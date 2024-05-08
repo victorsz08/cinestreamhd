@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IMovie, ISerieTv } from "./types";
 import style from "./home.module.css";
@@ -57,6 +57,7 @@ export default function Home() {
 
   return (
     <section className={style.home}>
+      <Suspense fallback={<p>Loading...</p>}>
       <div className={style.search}>
         <div className={style.title}>
           <h1>Cine</h1>
@@ -86,6 +87,7 @@ export default function Home() {
         ))}
       </ListCard>
       </>}
+      </Suspense>
     </section>
   );
 }

@@ -3,8 +3,9 @@
 import CardSerieTv from "@/app/components/CardSerieTv";
 import style from "./serie.module.css";
 import { IGenres, ISerieTv } from "@/app/types";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, Suspense, useEffect, useState } from "react";
 import { optionsApi } from "@/app/services/optionsApi";
+import Loading from "./[serie_id]/season/[season_number]/loading";
 
 // TODAS AS DESCRIÇÕES DE FUNÇÕES ESTÃO NA PAGINA DE FILMES [FUNÇÕES SIMILARES AS ESTAS]: /APP/FILME
 
@@ -116,7 +117,7 @@ export default function Serie(){
         }
 
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/popular?page=${page}`, optionsApi);
+            const response = await fetch(`https://api.themoviedb.org/3/tv/popular?page=${page}&language=pt-BR`, optionsApi);
             const data = await response.json();
             
             setResponse(data.results);
@@ -133,8 +134,9 @@ export default function Serie(){
       
         setGenreSearch("");
         setSelectedGenre(null)
-        const series = await fetch(`https://api.themoviedb.org/3/search/tv?query=${serie}&page=${page}`, optionsApi)
+        const series = await fetch(`https://api.themoviedb.org/3/search/tv?query=${serie}&page=${page}&language=pt-BR`, optionsApi)
                              .then(response => response.json());
+
 
         setResponse(series.results);
         setTotalPages(series.total_pages);
@@ -163,9 +165,12 @@ export default function Serie(){
                 </form>
             </main>
             <img id={style.banner} src="https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+            
             {response && <div className={style.results_container}>
                 {response.map(serie => (
+                    <Suspense fallback={<Loading/>}>
                     <CardSerieTv serie={serie} key={serie?.id} />
+                    </Suspense>
                 ))}
             </div>}
             {totalPages > 1 &&

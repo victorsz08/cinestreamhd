@@ -7,6 +7,7 @@ import { optionsApi } from "@/app/services/optionsApi";
 import { IMovie, IPeople } from "@/app/types";
 import { Metadata } from "next";
 import { formatDate } from "@/app/services/utils";
+import Link from "next/link";
 
 type Props = {
   params: { movie_id: string }
@@ -74,13 +75,10 @@ export default async function Filme({ params }: { params: { movie_id: string } }
         <div className={style.player_movie}>
           <h1>{`${movie?.title} (Dublado)`}</h1>
           <h3>ASSISTIR AGORA!</h3>
-          <iframe
-            src={`https://embedder.net/e/movie?imdb=${movie?.imdb_id}`}
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+          <h5>[NÃO HOSPEDAMOS VÍDEOS EM NOSSOS SITES] - TODOS OS FILMES SÃO ABERTOS EM UMA NOVA GUIA.</h5>
+          <Link href={`https://embedder.net/e/movie?imdb=${movie?.imdb_id}`} target="_blank">
+            ASSISTIR DUBLADO
+          </Link>
         </div>
       <div className={style.casts}>
         <ListCard title="Elenco">

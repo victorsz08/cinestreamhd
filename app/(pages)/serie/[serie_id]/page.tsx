@@ -70,7 +70,7 @@ export default async function Serie({ params }: { params: { serie_id: string } }
             poster_path={season.poster_path}
             season_number={season.season_number}
             serie_id={response.id}
-            key={response.id}
+            key={season.id}
           />
         ))}
       </ListCard>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ISerieTv } from "../types";
 import Link from "next/link";
 import GraphicCard from "./GraphicCard";
-import { formatDate } from "../services/utils.ts";
+import { formatDate } from "@/app/services/utils";
 
 
 const CardStyle = styled.div`

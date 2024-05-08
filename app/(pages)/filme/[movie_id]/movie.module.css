@@ -22,6 +22,22 @@
     height: 400px;
 }
 
+.movie .player_movie h5 {
+    color: #e5ff00;
+    margin: 1rem 0;
+}
+
+.movie .player_movie a {
+    background-color: #5C0099;
+    padding: .7rem 1rem;
+    border: none;
+    border-radius: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 4rem;
+    text-decoration: none;
+}
+
 .movie .player_movie h1 {
     font-size: 1.3rem;
     font-weight: 600;

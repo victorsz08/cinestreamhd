@@ -1,0 +1,36 @@
+.about_container {
+    padding: 180px 0;
+    text-align: center;
+    height: 100vh;
+}
+
+.about_container .title {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.about_container .title h1 {
+    font-size: 3rem;
+}
+
+.about_container .title h1 + h1 {
+    color: #5C0099;
+}
+
+.about_container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.about_container .info_container {
+    padding: 3rem 15rem;
+    text-align: left;
+    font-size: .8rem;
+}
+
+.about_container .info_container p {
+    margin: 1rem 0;
+}

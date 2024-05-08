@@ -60,6 +60,11 @@
     font-weight: 800;
 }
 
+.season_page .episode_list h5 {
+    color: #e5ff00;
+    margin: 1rem 0;
+}
+
 .season_page .episode_list a {
     font-weight: 600;
     color: #4c00ff;

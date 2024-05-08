@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +27,12 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
               <Link href="/">HOME</Link>
               <Link href="/filme">FILMES</Link>
               <Link href="/serie">SERIES/TV</Link>
-              <Link href="/">SOBRE</Link>
+              <Link href="/sobre">SOBRE</Link>
             </nav>
         </header>
+        <Suspense fallback={<Loading/>}>
            {children}
+        </Suspense>
         </body>
     </html>
   );

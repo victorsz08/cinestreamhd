@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { IMovie, ISerieTv } from "../types";
-import { formatDate } from "../services/utils.ts";
 import Link from "next/link";
+import { formatDate } from "../services/utils";
 
 
 const CardSearch = styled.div`
@@ -35,10 +34,10 @@ const CardSearch = styled.div`
     }
 `
 
-export default function CardMovieSearch({ data } : { data: IMovie | ISerieTv }){
+export default function CardMovieSearch({ data } : { data: any }){
     return (
         <CardSearch>
-            <Link href={data.media_type === "movie" ? `/filme/${data.id}` : `/serie/${data.id}`}>
+            <Link href={data.media_type === "movie" ? `/filme/${data.title.split(" ").join("+")}-${data.id}` : `/serie/${data.name.split(" ").join("+")}-${data.id}`}>
             <img src={`https://image.tmdb.org/t/p/original${data.poster_path}`}/>
             <div className="infos">
                 <h3>{data.title || data.name}</h3>

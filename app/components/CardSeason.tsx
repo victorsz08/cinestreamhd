@@ -3,9 +3,10 @@
 import styled from "styled-components";
 import { ISeasons, ISerieTv } from "../types";
 import Link from "next/link";
-import { formatDate } from "../services/utils.ts";
+
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { formatDate } from "../services/utils";
 
 
 const CardSeasonStyle = styled.div`

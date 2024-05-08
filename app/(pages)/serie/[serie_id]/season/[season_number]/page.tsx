@@ -28,6 +28,9 @@ export default async function Season({ params } : { params: { season_number: str
     const response: ISeasons = await fetch(`https://api.themoviedb.org/3/tv/${serieId}/season/${params.season_number}?language=pt-BR`, optionsApi).then(response => response.json())
     .catch(err => console.log(err))
 
+    const imdb_id = await fetch(` https://api.themoviedb.org/3/tv/${serieId}/external_ids`, optionsApi).then(response => response.json())
+
+
     return (
         <section className={style.season_page}>
             <div className={style.season_info}>
@@ -50,10 +53,11 @@ export default async function Season({ params } : { params: { season_number: str
             <img id={style.banner} src={`https://image.tmdb.org/t/p/original${response?.poster_path}`}/>
             <div className={style.episode_list}>
                 <h1>Lista de episódios:</h1>
+                <h5>[NÃO HOSPEDAMOS VÍDEOS EM NOSSOS SITES] - TODOS OS EPISÓDIOS SÃO ABERTOS EM UMA NOVA GUIA.</h5>
                 {response?.episodes?.map(ep => (
                     <div className={style.episode_info} key={ep.id}>
                         <h4><strong>Episódio {ep.episode_number}-</strong>{ep.name}</h4>
-                        <Link href={`${params.season_number}/episodio/${ep.name?.split(" ").join("+")}-${ep.episode_number}`}>(Dublado)</Link>
+                        <Link target="_blank" href={`https://embedder.net/e/series?imdb=${imdb_id.imdb_id}&sea=${params.season_number}&epi=${ep.episode_number}`}>(Dublado)</Link>
                     </div>
                 ))}
             </div>
