@@ -76,3 +76,45 @@ h1, h2, h3, h4, h5, h6, p {
   color: #00030b;
   transform: translateX(-30px);
 }
+
+
+@media (max-width: 376px) {
+  .header {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header .title-container h1 {
+    font-size: .9rem;
+  }
+
+  .header .nav-container a {
+    font-size: .7rem;
+    margin: 0 .5rem;
+  }
+  
+}
+
+
+@media (max-width: 530px) {
+  .header {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header .title-container h1 {
+    font-size: .9rem;
+  }
+
+  .header .nav-container a {
+    font-size: .7rem;
+    margin: 0 .5rem;
+  }
+  
+}

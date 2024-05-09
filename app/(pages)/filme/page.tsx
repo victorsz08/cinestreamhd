@@ -5,6 +5,7 @@ import { IGenres, IMovie } from "@/app/types";
 import { FormEvent, useEffect, useState } from "react";
 import style from "./movie.module.css";
 import { optionsApi } from "@/app/services/optionsApi";
+import Image from "next/image";
 
 export default function Movies() {
   const [value, setValue] = useState("");
@@ -60,8 +61,6 @@ export default function Movies() {
 
     const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}&language=pt-BR`, optionsApi)
         .then(response => response.json()).catch(err => console.log(err));
-        
-        console.log(response);
 
         setMovies(response.results);
         setTotalPages(response.total_pages);
@@ -171,7 +170,7 @@ export default function Movies() {
           </div>
         </form>
       </main>
-      <img
+      <img alt="pesquisa"
         id={style.banner}
         src="https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />

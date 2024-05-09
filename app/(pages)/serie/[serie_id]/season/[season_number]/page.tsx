@@ -6,6 +6,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { optionsApi } from "@/app/services/optionsApi";
 import { Metadata } from "next";
 import { formatDate } from "@/app/services/utils";
+import Image from "next/image";
 
 
 type Props = {
@@ -34,7 +35,7 @@ export default async function Season({ params } : { params: { season_number: str
     return (
         <section className={style.season_page}>
             <div className={style.season_info}>
-                <img src={`https://image.tmdb.org/t/p/original${response?.poster_path}`}/>
+                <img alt={response.name || ""} src={`https://image.tmdb.org/t/p/original${response?.poster_path}`}/>
                 <div className={style.infos}>
                     <h1>{response?.name}</h1>
                     <h4>Data de Lançamento</h4>
@@ -50,7 +51,7 @@ export default async function Season({ params } : { params: { season_number: str
                     </div>
                 </div>
             </div>
-            <img id={style.banner} src={`https://image.tmdb.org/t/p/original${response?.poster_path}`}/>
+            <img alt={response.name || ""} id={style.banner} src={`https://image.tmdb.org/t/p/original${response?.poster_path}`}/>
             <div className={style.episode_list}>
                 <h1>Lista de episódios:</h1>
                 <h5>[NÃO HOSPEDAMOS VÍDEOS EM NOSSOS SITES] - TODOS OS EPISÓDIOS SÃO ABERTOS EM UMA NOVA GUIA.</h5>

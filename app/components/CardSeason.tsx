@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { formatDate } from "../services/utils";
+import Image from "next/image";
 
 
 const CardSeasonStyle = styled.div`
@@ -68,8 +69,8 @@ export default function CardSeason({ id, air_date, episode_count, poster_path, s
 
     return (
         <CardSeasonStyle>
-            <Link href={`${titleSerie}-${serie_id}/season/${season_number}`}>
-                <img src={`https://image.tmdb.org/t/p/original${poster_path}`}/>
+            <Link href={`/serie/${titleSerie}-${serie_id}/season/${season_number}`}>
+                <img alt={titleSerie || ""} src={`https://image.tmdb.org/t/p/original${poster_path}`}/>
                 <div className="infos">
                     <h3>{name}</h3>
                     <p><strong>Episódios:</strong>{episode_count} Episódios</p>

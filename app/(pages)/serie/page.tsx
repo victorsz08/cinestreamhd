@@ -6,6 +6,7 @@ import { IGenres, ISerieTv } from "@/app/types";
 import { FormEvent, Suspense, useEffect, useState } from "react";
 import { optionsApi } from "@/app/services/optionsApi";
 import Loading from "./[serie_id]/season/[season_number]/loading";
+import Image from "next/image";
 
 // TODAS AS DESCRIÇÕES DE FUNÇÕES ESTÃO NA PAGINA DE FILMES [FUNÇÕES SIMILARES AS ESTAS]: /APP/FILME
 
@@ -103,8 +104,6 @@ export default function Serie(){
     
         const response = await fetch(`https://api.themoviedb.org/3/discover/tv?with_genres=${genreId}&page=${page}&language=pt-BR`, optionsApi)
             .then(response => response.json()).catch(err => console.log(err));
-            
-            console.log(response);
     
             setResponse(response.results);
             setTotalPages(response.total_pages);
@@ -137,7 +136,6 @@ export default function Serie(){
         const series = await fetch(`https://api.themoviedb.org/3/search/tv?query=${serie}&page=${page}&language=pt-BR`, optionsApi)
                              .then(response => response.json());
 
-
         setResponse(series.results);
         setTotalPages(series.total_pages);
     }
@@ -164,13 +162,11 @@ export default function Serie(){
           </div>
                 </form>
             </main>
-            <img id={style.banner} src="https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+            <img alt="" id={style.banner} src="https://images.unsplash.com/photo-1521967906867-14ec9d64bee8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
             
             {response && <div className={style.results_container}>
-                {response.map(serie => (
-                    <Suspense fallback={<Loading/>}>
-                    <CardSerieTv serie={serie} key={serie?.id} />
-                    </Suspense>
+                {response.map((serie, index) => (
+                    <CardSerieTv serie={serie} key={serie.id || index} />
                 ))}
             </div>}
             {totalPages > 1 &&

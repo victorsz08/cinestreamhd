@@ -5,6 +5,7 @@ import { ISerieTv } from "../types";
 import Link from "next/link";
 import GraphicCard from "./GraphicCard";
 import { formatDate } from "@/app/services/utils";
+import Image from "next/image";
 
 
 const CardStyle = styled.div`
@@ -64,7 +65,7 @@ export default function CardSerieTv({ serie } : { serie: ISerieTv } ){
     return (
         <CardStyle>
         <Link href={`/serie/${titleSerie}-${serie.id}`}> 
-            <img src={`https://image.tmdb.org/t/p/original${serie.poster_path}`} alt={serie.name} />
+            <img src={`https://image.tmdb.org/t/p/original${serie.poster_path}`} alt={serie.name || ""} />
             <div className="titles">
                 <div className="infos">
                     <h2>{serie.name}</h2>

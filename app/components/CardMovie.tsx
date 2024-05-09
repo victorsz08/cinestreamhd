@@ -4,6 +4,7 @@ import { formatDate } from "../services/utils";
 import GraphicCard from "./GraphicCard";
 import Link from "next/link";
 import { Suspense } from "react";
+import Image from "next/image";
 
 
 
@@ -63,7 +64,7 @@ export default function CardMovie( {movie} : { movie: IMovie}){
     return (
         <CardStyle>
             <Link href={`/filme/${titleMovie}-${movie.id}`}> 
-                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
+                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title || ""} />
                 <div className="titles">
                     <div className="infos">
                         <h2>{movie.title}</h2>

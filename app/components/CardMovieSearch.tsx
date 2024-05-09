@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { formatDate } from "../services/utils";
+import Image from "next/image";
 
 
 const CardSearch = styled.div`
@@ -38,7 +39,7 @@ export default function CardMovieSearch({ data } : { data: any }){
     return (
         <CardSearch>
             <Link href={data.media_type === "movie" ? `/filme/${data.title.split(" ").join("+")}-${data.id}` : `/serie/${data.name.split(" ").join("+")}-${data.id}`}>
-            <img src={`https://image.tmdb.org/t/p/original${data.poster_path}`}/>
+            <img alt={data.name || data.title || ""} src={`https://image.tmdb.org/t/p/original${data.poster_path}`}/>
             <div className="infos">
                 <h3>{data.title || data.name}</h3>
                 <p>Data de Lançamento: {formatDate(data.release_date || data.first_air_date)}</p>

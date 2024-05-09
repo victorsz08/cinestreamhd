@@ -7,6 +7,7 @@ import { optionsApi } from "@/app/services/optionsApi";
 import { ISerieTv } from "@/app/types";
 import { Metadata } from "next";
 import { formatDate } from "@/app/services/utils";
+import Image from "next/image";
 
 
 type Props = {
@@ -35,10 +36,10 @@ export default async function Serie({ params }: { params: { serie_id: string } }
   return (
     <section className={style.serie_container}>
       <div className={style.serie_info}>
-        <img src={`https://image.tmdb.org/t/p/original${response?.poster_path}`} />
+        <img alt={response.name || ""} src={`https://image.tmdb.org/t/p/original${response?.poster_path}`} />
         <div className={style.infos}>
           <h1>{response?.name}</h1>
-          <p>"{response?.tagline}"</p>
+          <p>{response?.tagline}</p>
           <h4>Sinopse</h4>
           <p>{response?.overview}</p>
             <h4>Data de Lançamento do 1° Episódio:</h4>
@@ -60,8 +61,14 @@ export default async function Serie({ params }: { params: { serie_id: string } }
           </div>
         </div>
       </div>
-      <img id={style.banner} src={`https://image.tmdb.org/t/p/original${response?.backdrop_path}`}/>
-      <ListCard title="Temporadas">
+      <img alt={response.name || ""} id={style.banner} src={`https://image.tmdb.org/t/p/original${response?.backdrop_path}`}/>
+      <ListCard
+      onclick={async () => {
+        "use server"
+        return
+      }}
+      actions={false}
+      title="Temporadas">
         {response?.seasons?.map(season => (
           <CardSeason 
             air_date={season.air_date}

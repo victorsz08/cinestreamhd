@@ -8,6 +8,7 @@ import { IMovie, IPeople } from "@/app/types";
 import { Metadata } from "next";
 import { formatDate } from "@/app/services/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   params: { movie_id: string }
@@ -34,10 +35,10 @@ export default async function Filme({ params }: { params: { movie_id: string } }
   return (
     <section className={style.movie}>
       <div className={style.info_movie}>
-        <img src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} />
+        <img alt={movie?.title || ""} src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} />
         <div className={style.infos}>
           <h1>{movie?.title}</h1>
-          <p>"{movie?.tagline}"</p>
+          <p>{movie?.tagline}</p>
           <h4>Sinópse</h4>
           <p>{movie?.overview}</p>
           <div className={style.more_infos}>
@@ -70,7 +71,7 @@ export default async function Filme({ params }: { params: { movie_id: string } }
       <img
         id={style.banner}
         src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-        alt={movie?.title}
+        alt={movie?.title || ""}
       />
         <div className={style.player_movie}>
           <h1>{`${movie?.title} (Dublado)`}</h1>

@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { IPeople } from "../types";
+import Image from "next/image";
 
 
 
@@ -29,7 +30,7 @@ const CardPeopleStyle = styled.div`
 export default function CardPeople({ profile_path, name, character } : IPeople){
     return (
         <CardPeopleStyle>
-            <img src={`https://image.tmdb.org/t/p/original${profile_path}`}/>
+            <img alt={name || ""} src={`https://image.tmdb.org/t/p/original${profile_path}`}/>
             <div className="infos-people">
                 <h4>{name}</h4>
                 <p>{character}</p>
