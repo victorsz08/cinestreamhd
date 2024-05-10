@@ -88,3 +88,130 @@
     align-items: center;
     gap: 10px;
 }
+
+
+@media (max-width: 376px) {
+    .season_page .season_info {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .season_page #banner {
+        height: 70vh;
+    }
+
+    .season_page .season_info img {
+        margin: .8rem 0;
+        width: 130px;
+    }
+
+    .season_page .season_info h1 {
+        font-size: .9rem;
+    }
+
+    .season_page .season_info .infos h4, .season_page .season_info .infos p {
+        font-size: .6rem;
+    }
+
+    .season_page .episode_list .episode_info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 5px;
+        font-size: .8rem;
+    }
+
+    .season_page .episode_list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 5px;
+        font-size: .9rem;
+        margin: 1rem 0;
+    }
+
+    .season_page .episode_list .episode_info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .season_page .seasons a {
+        background-color: #343434;
+        padding: .7rem 1.2rem;
+        font-weight: 800;
+        text-decoration: none;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        font-size: .7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .season_page .season_info {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .season_page #banner {
+        height: 70vh;
+    }
+
+    .season_page .season_info img {
+        margin: .8rem 0;
+        width: 130px;
+    }
+
+    .season_page .season_info h1 {
+        font-size: .9rem;
+    }
+
+    .season_page .season_info .infos h4, .season_page .season_info .infos p {
+        font-size: .6rem;
+    }
+
+    .season_page .episode_list .episode_info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 5px;
+        font-size: .8rem;
+    }
+
+    .season_page .episode_list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 5px;
+        font-size: .9rem;
+        margin: 1rem 0;
+    }
+
+    .season_page .episode_list .episode_info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .season_page .seasons a {
+        background-color: #343434;
+        padding: .7rem 1.2rem;
+        font-weight: 800;
+        text-decoration: none;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        font-size: .7rem;
+    }
+}

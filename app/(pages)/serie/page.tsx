@@ -3,7 +3,7 @@
 import CardSerieTv from "@/app/components/CardSerieTv";
 import style from "./serie.module.css";
 import { IGenres, ISerieTv } from "@/app/types";
-import { FormEvent, Suspense, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { optionsApi } from "@/app/services/optionsApi";
 import Loading from "./[serie_id]/season/[season_number]/loading";
 import Image from "next/image";

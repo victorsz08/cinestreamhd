@@ -99,7 +99,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 
-@media (max-width: 530px) {
+@media (max-width: 600px) {
   .header {
     padding: 1.8rem;
     display: flex;

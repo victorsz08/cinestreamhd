@@ -73,7 +73,7 @@ export default function Movies() {
 
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?page=${page}`,
+        `https://api.themoviedb.org/3/movie/popular?page=${page}&language=pt-BR`,
         optionsApi
       );
       const data = await response.json();
@@ -93,7 +93,7 @@ export default function Movies() {
     setGenreSearch(""); // SE UMA NOVA BUSCA FOR FEITA, ZERA O VALOR DOS GÊNEROS PARA BUSCAR APENAS POR NOME DO FILME.
 
     const movies = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${value}&page=${page}`,
+      `https://api.themoviedb.org/3/search/movie?query=${value}&page=${page}&language=pt-BR`,
       optionsApi
     )
       .then((response) => response.json())

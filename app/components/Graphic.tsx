@@ -15,6 +15,14 @@ const GraphicStyled = styled.div`
         transform: translate(14px, -50px);
     }
 
+    @media (max-width: 376px) {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
+    }
+
 `
 
 export default function GraphicCircle({ percent } : IGraphic ) {

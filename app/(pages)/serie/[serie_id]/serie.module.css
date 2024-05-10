@@ -60,3 +60,51 @@
 .votes {
     margin: 1rem 0;
 }
+
+@media (max-width: 376px) {
+    .serie_container .serie_info {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .serie_container #banner {
+        height: 100vh;
+    }
+
+    .serie_container .serie_info img {
+        margin: .8rem 0;
+        width: 130px;
+    }
+
+    .serie_container .serie_info h1 {
+        font-size: .9rem;
+    }
+
+    .serie_container .serie_info .infos h4, .serie_container .serie_info .infos p {
+        font-size: .6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .serie_container .serie_info {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .serie_container #banner {
+        height: 100vh;
+    }
+
+    .serie_container .serie_info img {
+        margin: .8rem 0;
+        width: 130px;
+    }
+
+    .serie_container .serie_info h1 {
+        font-size: .9rem;
+    }
+
+    .serie_container .serie_info .infos h4, .serie_container .serie_info .infos p {
+        font-size: .6rem;
+    }
+}
