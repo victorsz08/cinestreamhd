@@ -34,3 +34,32 @@
 .about_container .info_container p {
     margin: 1rem 0;
 }
+
+
+@media (max-width: 376px) {
+    .about_container .info_container {
+        padding: 1rem;
+    }
+    .about_container .title h1 {
+        font-size: 1.8rem;
+    }
+
+    .about_container h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .about_container .info_container {
+        padding: 1rem;
+    }
+    .about_container .title h1 {
+        font-size: 1.8rem;
+    }
+
+    .about_container h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+}

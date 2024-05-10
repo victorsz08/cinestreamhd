@@ -30,9 +30,14 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
               <Link href="/sobre">SOBRE</Link>
             </nav>
         </header>
-        <Suspense fallback={<Loading/>}>
            {children}
-        </Suspense>
+           <footer className="footer-container">
+              <p><strong>AVISO LEGAL:</strong> Nós não armazenamos nenhum dos arquivos em nenhum servidor. Todos os conteúdos são fornecidos por terceiros sem qualquer tipo de filiação</p>
+              <div className="copyright">
+                <h5>CINESTREAM</h5>
+                <p>Todos os Direitos e Códigos Reservados do Site - 2024</p>
+              </div>
+           </footer>
         </body>
     </html>
   );
