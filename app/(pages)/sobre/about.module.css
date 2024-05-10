@@ -37,6 +37,10 @@
 
 
 @media (max-width: 376px) {
+    .about_container {
+        height: 120vh;
+        padding: 2rem 0;
+    }
     .about_container .info_container {
         padding: 1rem;
     }
@@ -61,5 +65,10 @@
     .about_container h3 {
         font-size: 1rem;
         margin-bottom: 1rem;
+    }
+
+    .about_container {
+        height: 120vh;
+        padding: 2rem 0;
     }
 }
