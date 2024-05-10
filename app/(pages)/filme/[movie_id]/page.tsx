@@ -82,7 +82,10 @@ export default async function Filme({ params }: { params: { movie_id: string } }
           </Link>
         </div>
       <div className={style.casts}>
-        <ListCard title="Elenco">
+        <ListCard title="Elenco" onclick={async () => {
+        "use server"
+        return
+      }}>
           {peoples.map((people, index) => (
               <CardPeople
                 key={people?.id || index}
