@@ -1,0 +1,55 @@
+.movies_home_container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    width: calc(100vw * 3);
+}
+.movie_card {
+    flex: 0 0 100vw; /* Cada filme ocupa toda a largura da tela visível */
+    scroll-snap-align: start; /* Garante que cada filme fique alinhado à esquerda */
+}
+
+.infos_container {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 100%;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 3rem;
+}
+
+.infos_container p {
+    font-size: .6rem;
+}
+
+.infos_container h1 {
+    font-size: 2rem;
+}
+
+.infos_container img {
+    width: 160px;
+}
+
+.infos_container a {
+    padding: .8rem 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(0, 0 ,0, 40%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+    gap: 6px;
+}
+
+.infos_container a:hover {
+    transform: scale(108%);
+    background-color: #d6d6d6;
+    color: #000;
+    transition: .5s;
+}

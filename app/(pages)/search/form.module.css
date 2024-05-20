@@ -1,0 +1,36 @@
+.form_container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.form_container button {
+    border: none;
+    color: #FFF;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.form_container button svg {
+    color: #5C0099;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    transform: translate(-2.8rem, -1rem);
+}
+
+
+.form_container input {
+    font-size: .7rem;
+    padding: .7rem 1rem;
+    border: none;
+    width: 20rem;
+    border-radius: 1.4rem;
+}
+
+.form_container input:focus {
+    outline: 0;
+}

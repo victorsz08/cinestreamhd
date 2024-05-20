@@ -1,6 +1,6 @@
 {
   "name": "cine-stream",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.17",
+    "@mui/x-charts": "^7.4.0",
     "@next/env": "^14.2.3",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",

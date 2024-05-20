@@ -4,8 +4,8 @@
 export type IMovie =  {
     id?: string;
     title?: string;
-    vote_average?: string;
-    vote_count?: string;
+    vote_average?: number;
+    vote_count?: number;
     release_date?: string;
     backdrop_path?: string;
     media_type?: string;
@@ -39,7 +39,7 @@ export type IProductionCompanies = {
 }
 export type IGenres = {
     id: string;
-    name?: string;
+    name: string;
 }
 
 export type ISerieTv = {
@@ -56,8 +56,8 @@ export type ISerieTv = {
     popularity?: string;
     poster_path?: string;
     media_type?: string;
-    vote_average?: string;
-    vote_count?: string;
+    vote_average?: number;
+    vote_count?: number;
     production_companies?: IProductionCompanies[];
     seasons?: ISeasons[];
     imdb_id?: string
@@ -75,6 +75,7 @@ export type ISeasons = {
     vote_average?: string;
     episodes?: IEpisodes[];
     imdb_id?: string
+    name_series?: string;
 }
 
 export type IEpisodes = {

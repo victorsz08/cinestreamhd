@@ -1,0 +1,37 @@
+.list_card_container {
+    padding: 2rem;
+
+}
+
+.list_card_container h2 {
+    padding: 0 1rem;
+    border-left: 8px solid #5C0099;
+}
+
+.list_card_container .cards_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 15px;
+    overflow-x: scroll;
+    padding: 1rem 0;
+    transition: .3s;
+}
+
+.list_card_container .actions {
+    padding: 1rem 0;
+}
+
+.list_card_container .actions button {
+    padding: .8rem 1rem;
+    font-weight: 700;
+    background-color: #5C0099;
+    color: #FFF;
+    border: none;
+    box-shadow: 0 0 0 1px #000;
+    cursor: pointer;
+}
+
+.list_card_container .actions button.selected {
+    background-color: #19002a;
+}

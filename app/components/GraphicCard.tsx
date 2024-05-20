@@ -1,35 +1,53 @@
-"use client";
+"use client"
 
-import styled from "styled-components";
+import React, { useEffect, useRef } from 'react';
 
+interface PercentageCircleProps {
+  voteAverage: number;
+  totalVotes: number;
+  width: number;
+  height: number;
+}
 
-const GraphicStyled = styled.div`
-    h4 {
-        font-size: .45rem;
-        position: absolute;
-        transform: translateX(10px) translateY(-35px)
-    }
-`
+export default function ChartCircle({ voteAverage, totalVotes, width, height }: PercentageCircleProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-export default function GraphicCard({ percent } : { percent: string }){
-    const percentFormated = (parseInt(percent) / 10) * 100;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const percentCalc = (percentFormated * 90)/ 100 || 100; 
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    return (
-        <GraphicStyled>
-                    <svg width="45px" height="45px">
-                        <circle 
-                        r="15" 
-                        cx="18" 
-                        cy="18" 
-                        stroke="#5C0099" 
-                        strokeWidth="3px" 
-                        fill="none" 
-                        strokeDasharray="90" 
-                        strokeDashoffset={(90 - percentCalc)}></circle>
-                    </svg>
-                    <h4>{percentFormated}%</h4>
-        </GraphicStyled>
-    )
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(centerX, centerY) - 5;
+    const percentage = (voteAverage / 10) * 100;
+    const percentageRadians = (percentage / 100) * (2 * Math.PI);
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw background circle
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = 'transparent';
+    ctx.fill();
+
+    // Draw percentage arc
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, -0.5 * Math.PI, percentageRadians - 0.5 * Math.PI);
+    ctx.strokeStyle = '#5C0099';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    // Draw percentage text in the center
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = 'bold 15px Montserrat';
+    ctx.fillText(`${Math.round(percentage)}%`, centerX, centerY);
+  }, [voteAverage, totalVotes, width, height]);
+
+  return <canvas style={{ width: 'auto', height: height }} ref={canvasRef} />
 }

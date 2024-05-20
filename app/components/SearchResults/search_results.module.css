@@ -1,0 +1,16 @@
+.movie_search_container {
+    padding: 180px 50px;
+}
+
+.movie_search_container h1 {
+    padding-left: 20px;
+    border-left: 12px solid #5C0099;
+}
+
+.movie_search_container .movies_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 3rem 0;
+}

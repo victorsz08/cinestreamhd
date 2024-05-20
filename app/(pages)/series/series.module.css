@@ -1,0 +1,59 @@
+.serie_container {
+    padding: 90px 0;
+}
+
+.infos_container {
+    position: relative;
+    z-index: 1;
+}
+
+.infos_container  {
+    display: flex;
+    justify-content: flex-start;
+    padding: 4rem 5rem;
+    gap: 1.5rem;
+}
+
+.infos_container img {
+    width: 240px;
+    height: 380px;
+}
+
+.infos_container .infos p {
+    font-size: .8rem;
+    font-weight: 300;
+}
+
+.infos_container .infos h5 {
+    margin-top: 3rem;
+    margin-bottom: .5rem;
+}
+
+.infos_container .infos .details_container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: .5rem;
+}
+
+.infos_container .infos .details_container .details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.infos_container .genres  {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    margin-bottom: 2rem;
+}
+
+.infos_container h6 {
+    margin-top: 2rem;
+    margin-bottom: .4rem;
+}
+
+.infos_container .genres p {
+    margin-right: .5rem;
+}

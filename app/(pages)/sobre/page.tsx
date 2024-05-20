@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 export default function About() {
     return (
         <section className={style.about_container}>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3068788226321043"
+          crossOrigin="anonymous"></script>
             <div className={style.title}>
                 <h1>Cine</h1>
                 <h1>Stream</h1>
@@ -35,6 +37,8 @@ export default function About() {
             No CineStream, buscamos fornecer uma experiência informativa e envolvente, mas também promovemos a responsabilidade e o respeito pelos direitos autorais. Explore nosso site com consciência e desfrute de uma jornada emocionante pelo mundo do entretenimento!
             </p>
             </div>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3068788226321043"
+          crossOrigin="anonymous"></script>
         </section>
     )
 }
